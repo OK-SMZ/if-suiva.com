@@ -70,7 +70,9 @@
                 data[key] = value;
             });
 
+            const roleId = '1342826932961677323'; // Replace with the actual role ID you want to ping
             const message = {
+                content: `<@&${roleId}>`, // Mention the role
                 embeds: [
                     {
                         title: "New Pilot Application",

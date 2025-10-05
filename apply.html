@@ -68,15 +68,15 @@
     </section>
 
     <script>
-        document.getElementById('application-form').addEventListener('submit', async function(event) {
+                document.getElementById('application-form').addEventListener('submit', async function(event) {
             event.preventDefault();
-
+        
             const formData = new FormData(document.getElementById('application-form'));
             const data = {};
             formData.forEach((value, key) => {
                 data[key] = value;
             });
-
+        
             const roleId = '1342826932961677323'; // Replace with the actual role ID you want to ping
             const message = {
                 content: `<@&${roleId}>`, // Mention the role
@@ -95,24 +95,24 @@
                             { name: "Active Infinite Flight Subscription", value: data.if_subscription, inline: true },
                             { name: "Blacklisted by IFVARB", value: data.ifvarb, inline: true },
                             { name: "Active IFC Account", value: data.ifc_account, inline: true },
-                            { name: "Applying for Career Mode", value: data.career_mode, inline: true }
+                            { name: "Applying for Career Mode", value: data['career-mode'], inline: true } // New field added
                         ],
                         color: 15158332 // Red color
                     }
                 ]
             };
-
+        
             try {
                 const response = await fetch('https://discord.com/api/webhooks/1342829587826085909/QhDZgEhyDs31Zr-vVWoiWAsagAevLjoRoFph1AyBlPpmojtjlPd7cAL4r6wXuLNzXrAy', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(message)
                 });
-
+        
                 if (!response.ok) {
                     throw new Error(`Error sending message to Discord webhook: ${response.statusText}`);
                 }
-
+        
                 window.location.href = 'submit.html';
             } catch (error) {
                 console.error('Error sending message to Discord webhook:', error.message);
